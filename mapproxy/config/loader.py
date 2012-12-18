@@ -31,6 +31,7 @@ log = logging.getLogger('mapproxy.config')
 from mapproxy.config import load_default_config, finish_base_config
 from mapproxy.config.spec import validate_mapproxy_conf
 from mapproxy.platform.image import require_alpha_composite_support
+from mapproxy.platform.image import require_blend_veloland_support
 from mapproxy.util import memoize
 from mapproxy.util.ext.odict import odict
 from mapproxy.util.yaml import load_yaml_file, YAMLError
@@ -355,6 +356,8 @@ class ImageOptionsConfiguration(ConfigurationBase):
                 conf['merge'] = conf.pop('merge_method')
                 if conf['merge'] == 'composite':
                     require_alpha_composite_support()
+                elif conf['merge'] == 'veloland':
+                    require_blend_veloland_support()
             formats_config[format] = conf
         for format, conf in formats_config.iteritems():
             if 'format' not in conf and format.startswith('image/'):
@@ -396,6 +399,8 @@ class ImageOptionsConfiguration(ConfigurationBase):
             merge = self.context.globals.get_value('image.merge_method', None)
         if merge == 'composite':
             require_alpha_composite_support()
+        elif merge == 'veloland':
+            require_blend_veloland_support()
 
         self._check_encoding_options(encoding_options)
 

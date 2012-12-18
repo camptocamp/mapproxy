@@ -88,7 +88,7 @@ def create_image(size, image_opts=None):
         mode = 'RGB'
         bgcolor = (255, 255, 255)
     else:
-        if image_opts.merge == 'composite':
+        if image_opts.merge in ('composite', 'veloland'):
             mode = 'RGBA'
         else:
             mode = image_opts.mode
@@ -149,6 +149,8 @@ def compatible_image_options(img_opts, base_opts=None):
 
     if any(o.merge == 'composite' for o in img_opts):
         merge = 'composite'
+    elif any(o.merge == 'veloland' for o in img_opts):
+        merge = 'veloland'
     else:
         merge = None
     

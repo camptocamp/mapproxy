@@ -49,6 +49,10 @@ def require_alpha_composite_support():
     if not hasattr(Image, 'alpha_composite'):
         raise ImportError('Pillow required for alpha_composite support')
 
+def require_blend_veloland_support():
+    if not hasattr(Image, 'blend_veloland'):
+        raise ImportError('custom Pillow required for blend_veloland support')
+
 def quantize_pil(img, colors=256, alpha=False, defaults=None):
     if hasattr(Image, 'FASTOCTREE'):
         if not alpha:

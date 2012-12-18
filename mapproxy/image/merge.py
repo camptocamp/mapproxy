@@ -89,6 +89,11 @@ class LayerMerger(object):
                     result.paste(img, (0, 0))
                 else:
                     result = Image.alpha_composite(result, img)
+            elif merge == 'veloland':
+                if img.mode == 'RGB':
+                    result.paste(img, (0, 0))
+                else:
+                    result = Image.blend_veloland(result, img)
             else:
                 if opacity is not None and opacity < 1.0:
                     img = img.convert(result.mode)
