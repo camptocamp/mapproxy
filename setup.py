@@ -2,7 +2,7 @@ import platform
 from setuptools import setup, find_packages
 
 install_requires = [
-    'PIL>=1.1.6,<1.2.99',
+    'Pillow',
     'PyYAML>=3.0,<3.99',
 ]
 
